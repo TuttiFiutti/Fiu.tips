@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: fiutips
+      MYSQL_USER: fiutips
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    container_name: fiutips_db
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+
+  oauth:
+    build: oauth/
+    environment:
+      COOKIE_SECRET: ${COOKIE_SECRET}
+    restart: always
+
+  backend:
+    depends_on:
+      - db
+    build: backend/
+    restart: always
+    environment:
+      MYSQL_HOSTNAME: db
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    container_name: backend
+    volumes:
+      - uploads:/app/uploads
+
+  proxy:
+    build:
+      context:
+        .
+      dockerfile:
+        nginx/Dockerfile
+      args:
+        SECRET_DIR: secrets/
+    restart: always
+    depends_on:
+      - backend
+      - oauth
+    ports:
+      - 443:443
+      - 80:80
+volumes:
+  db_data:
+  uploads:

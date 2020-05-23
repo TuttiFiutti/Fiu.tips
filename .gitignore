@@ -1,0 +1,6 @@
+.idea 
+frontend/dist
+nginx/html
+nginx/logs
+nginx/temp
+secrets
