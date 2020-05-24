@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <SoundListener />
-
   </v-container>
 </template>
 

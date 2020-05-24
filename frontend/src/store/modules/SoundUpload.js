@@ -1,14 +1,23 @@
 const uploadModule = {
   state: {
     startedUpload: false,
+    recentlyFinishedUploading: false,
     availableSounds: []
   },
   mutations: {
     startUpload(state) {
       state.startedUpload = true;
+      state.finishedUploadingWhen = new Date();
+      state.recentlyFinishedUploading = false;
     },
-    finishUpload(state) {
+    finishUpload(state, view) {
       state.startedUpload = false;
+      state.finishedUploadingWhen = Date.now();
+      state.recentlyFinishedUploading = true;
+      view.clearAllFiles();
+    },
+    markStale(state) {
+      state.recentlyFinishedUploading = false;
     },
     failUpload(state) {
       state.startedUpload = false;
@@ -37,7 +46,8 @@ const uploadModule = {
         })
         .then(response => {
           if (response.status === "ok") {
-            commit("finishUpload");
+            commit("finishUpload", payload.view);
+            setTimeout(() => commit('markStale'), 2000);
           } else {
             commit("failUpload");
           }

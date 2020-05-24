@@ -1,24 +1,19 @@
 <template>
   <div id="app">
     <v-app-bar color="grey lighten-4" height="60px">
-      <router-link to="/">Home</router-link>
-      |
-      <router-link to="/about">About</router-link>
-      |
-      <router-link to="/soundboard/upload">Upload</router-link>
-      |
-      <router-link to="/soundboard">Soundboard</router-link>
-      |
-      <router-link to="/listen">Listen</router-link>
+      <router-link to="/"><i class="fa fa-fw fa-2x fa-home" title="Home"></i></router-link>
+      <router-link to="/soundboard/upload"><i class="fa fa-fw fa-2x fa-upload" title="Upload"></i></router-link>
+      <router-link to="/soundboard"><i class="fa fa-fw fa-2x fa-music" title="Soundboard"></i></router-link>
+      <router-link to="/listen" v-if="displayName=='FriendlyFiutonaczi'"><i class="fa fa-fw fa-2x fa-volume-up" title="Listen"></i></router-link>
       <v-spacer />
-      <a v-if="!loggedIn" href="/oauth/login">Login with Twitch</a>
+      <a v-if="!loggedIn" href="/oauth/login"><i class="fa fa-fw fa-2x fa-user"></i></a>
       <v-avatar v-if="loggedIn" size="48">
         <img v-bind:src="avatar" v-bind:alt="displayName" />
       </v-avatar>
     </v-app-bar>
     <v-app>
-    <router-view />
-  </v-app>
+      <router-view />
+    </v-app>
   </div>
 </template>
 
@@ -55,7 +50,9 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
+i {
+  marign: 10px
+}
 #nav {
   padding: 30px;
 
