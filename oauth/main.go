@@ -36,9 +36,9 @@ const (
 )
 
 var (
-	clientID = "6qp69sohx54bwrn6ifo2cal5t7savy"
+	clientID = []string(os.Getenv("CLIENT_ID"))
 	// Consider storing the secret in an environment variable or a dedicated storage system.
-	clientSecret = "hhyjsz628g8m36f3lnrvbpoyujnegn"
+	clientSecret = []string(os.Getenv("CLIENT_SECRET"))
 	scopes       = []string{"user:read:email"}
 	redirectURL  = "https://fiu.tips/oauth/redirect"
 	oauth2Config *oauth2.Config

@@ -1,4 +1,8 @@
 .idea 
+.env
+.env_prod
+.env_test
+.env_dev
 frontend/dist
 nginx/html
 nginx/logs
