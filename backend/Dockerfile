@@ -8,6 +8,9 @@ RUN pip3 install -r requirements.txt
 
 COPY . /app
 
+
+RUN mkdir -p /app/uploads && touch /app/uploads/meta
+
 ENTRYPOINT [ "python3" ]
 
 CMD [ "app.py" ]

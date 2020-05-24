@@ -1,10 +1,10 @@
 <template>
-    <div>
-        <i class="fa fa-5x fa-volume-up"></i>
-        <b-field label="Volume">
-            <b-slider v-model="volume"></b-slider>
-        </b-field>
-    </div>
+  <div>
+    <i class="fa fa-5x fa-volume-up"></i>
+    <b-field label="Volume">
+      <b-slider v-model="volume"></b-slider>
+    </b-field>
+  </div>
 </template>
 <script>
 export default {
@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       websocket: null,
-      volume: 50,
+      volume: 50
     };
   },
   methods: {
@@ -27,7 +27,7 @@ export default {
           let json = JSON.parse(msg.data);
           if ("path" in json) {
             let audio = new Audio(json["path"]);
-            audio.volume = this.volume/100.;
+            audio.volume = this.volume / 100;
             audio.play();
           }
         };
