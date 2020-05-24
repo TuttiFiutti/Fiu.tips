@@ -36,11 +36,11 @@ const (
 )
 
 var (
-	clientID = []string(os.Getenv("CLIENT_ID"))
+	clientID = string(os.Getenv("CLIENT_ID"))
 	// Consider storing the secret in an environment variable or a dedicated storage system.
-	clientSecret = []string(os.Getenv("CLIENT_SECRET"))
+	clientSecret = string(os.Getenv("CLIENT_SECRET"))
 	scopes       = []string{"user:read:email"}
-	redirectURL  = "https://fiu.tips/oauth/redirect"
+	redirectURL  = string(os.Getenv("REDIRECT_URI"))
 	oauth2Config *oauth2.Config
 	cookieSecret = []byte(os.Getenv("COOKIE_SECRET"))
 	cookieStore  = sessions.NewCookieStore(cookieSecret)
