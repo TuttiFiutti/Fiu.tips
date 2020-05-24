@@ -6,7 +6,7 @@
       <router-link to="/soundboard"><i class="fa fa-fw fa-2x fa-music" title="Soundboard"></i></router-link>
       <router-link to="/listen" v-if="displayName=='FriendlyFiutonaczi'"><i class="fa fa-fw fa-2x fa-volume-up" title="Listen"></i></router-link>
       <v-spacer />
-      <a v-if="!loggedIn" href="/oauth/login"><i class="fa fa-fw fa-2x fa-user"></i></a>
+      <a v-if="!loggedIn" href="/oauth/login" title="Login with Twitch"><i class="fa fa-fw fa-2x fa-user"></i></a>
       <v-avatar v-if="loggedIn" size="48">
         <img v-bind:src="avatar" v-bind:alt="displayName" />
       </v-avatar>

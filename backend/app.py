@@ -168,7 +168,7 @@ class MetaRequestHandler(tornado.web.RequestHandler):
 
     @staticmethod
     def load_meta():
-        with open("uploads/meta", "a+") as csvfile:
+        with open("/app/uploads/meta") as csvfile:
             reader = csv.reader(csvfile, delimiter=';')
             for row in reader:
                 MetaRequestHandler.load_row(row)
